@@ -1,13 +1,15 @@
 SIZE = 8
 
-def solve(queens, solutions):
+solutions = []
+
+def solve(queens):
     if len(queens) == SIZE:
         solutions.append(queens)
     else:
         for i in range(SIZE):
             new_queens = queens + [i]
             if is_valid(new_queens):
-                solve(queens + [i], solutions)
+                solve(queens + [i])
     return solutions
 
 
@@ -34,6 +36,6 @@ def print_solution(solution):
         print ' '.join(x)
 
 if __name__ == '__main__':
-    solutions = solve([], [])
+    solutions = solve([])
     for solution in solutions:
         print_solution(solution)
