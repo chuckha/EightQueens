@@ -26,7 +26,7 @@ def is_valid(queens):
 def print_solution(solution):
     print "=={}==".format(solution)
     for q in solution:
-        x = ['-' for _ in range(8)]
+        x = ['-' for _ in range(SIZE)]
         x[q] = 'Q'
         print ' '.join(x)
 
