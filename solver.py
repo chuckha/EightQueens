@@ -1,17 +1,12 @@
 SIZE = 8
 
-solutions = []
-
 def solve(queens):
+    """Returns a list of all good solutions that exist for the configuration described by queens"""
+    print_solution(queens)
     if len(queens) == SIZE:
-        solutions.append(queens)
+        return [queens]
     else:
-        for i in range(SIZE):
-            new_queens = queens + [i]
-            if is_valid(new_queens):
-                solve(queens + [i])
-    return solutions
-
+        return sum([solve(queens + [i]) for i in range(SIZE) if is_valid(queens + [i])], [])
 
 def is_valid(queens):
     # must be unique to imply different columns
@@ -31,7 +26,7 @@ def is_valid(queens):
 def print_solution(solution):
     print "=={}==".format(solution)
     for q in solution:
-        x = ['-' for _ in range(len(solution))]
+        x = ['-' for _ in range(SIZE)]
         x[q] = 'Q'
         print ' '.join(x)
 
@@ -39,3 +34,4 @@ if __name__ == '__main__':
     solutions = solve([])
     for solution in solutions:
         print_solution(solution)
+
